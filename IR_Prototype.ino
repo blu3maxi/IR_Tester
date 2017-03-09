@@ -6,36 +6,33 @@ check if an IR emitter is working.
 
 const int analogInPin = A0;
 
-int sensorValue = 0;
-int initialValue = 0;
+int sensorValue = 0;        //Analog readings from pin A0
+int bacRead = 0;            //Background readings of the IR
+int button = 10;            //I will put a button on this pin
 int led = 13;
 
 void setup()
 {
   Serial.begin(9600);
   pinMode (led, OUTPUT);
+  pinMode(button, INPUT);
 }
 
 void loop()
 {
-  initialValue = analogRead(analogInPin);
-  delay(10);
-  sensorValue = analogRead(analogInPin);
 
-  if(sensorValue > (initialValue + 10))
+
+  if(digitalRead(button, HIGH);                   //When I press the button
   {
-    digitalWrite(led, HIGH);
+    int bacRead = analogRead(analogInPin);        //Trying to write a value to bacRead (not sure if its right)
   }
-
-  Serial.print("sensor = ");
+else(analogRead(analogInPin) > (bacRead + 5));    //Attempting to make LED flash when it picks up IR readings higher than bacRead
+{
+  Serial.print("sensor = ");                      //Printing to serial
   Serial.print(sensorValue);
   Serial.println();
 
-  if(sensorValue < (initialValue + 9))
-  {
-    digitalWrite(led, LOW);
-  }
+//I'm not sure if this actually works but either way is there a more elegant way of doing this and any suggestions
 
-  delay(20);
-
+  delay(12);
 }
